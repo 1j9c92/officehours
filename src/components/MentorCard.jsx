@@ -25,7 +25,10 @@ export default function MentorCard({ mentor, profileName }) {
   const initials = getInitials(name)
 
   return (
-    <div className="bg-white rounded-2xl border border-border-light p-6 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+    <Link
+      to={`/mentors/${mentor.user_id}`}
+      className="bg-white rounded-2xl border border-border-light p-6 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col h-full group"
+    >
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           {mentor.avatar_url ? (
@@ -36,7 +39,7 @@ export default function MentorCard({ mentor, profileName }) {
             </div>
           )}
           <div>
-            <div className="font-bold text-text-primary font-sans">{name}</div>
+            <div className="font-bold text-text-primary font-sans group-hover:text-coral transition-colors">{name}</div>
             <div className="text-xs text-text-muted font-sans">
               {mentor.job_function}{mentor.industry ? ` · ${mentor.industry}` : ''}
             </div>
@@ -58,13 +61,10 @@ export default function MentorCard({ mentor, profileName }) {
         <span className="text-xs text-text-muted font-sans">
           {mentor.years_experience} yrs experience
         </span>
-        <Link
-          to={`/mentors/${mentor.user_id}`}
-          className="text-xs font-bold text-coral hover:underline font-sans"
-        >
+        <span className="text-xs font-bold text-coral font-sans">
           View profile →
-        </Link>
+        </span>
       </div>
-    </div>
+    </Link>
   )
 }
